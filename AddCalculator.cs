@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AddCalculator
+namespace StringCalculator
 {
     public class AddCalculator
     {
@@ -12,6 +12,7 @@ namespace AddCalculator
         {
             if (numbers.StartsWith("//"))
             {
+                
                 return 0;
             }
             return GetSum(numbers);
@@ -22,13 +23,13 @@ namespace AddCalculator
         /// </summary>
         /// <param name="numbers">ex: 1,2,3</param>
         /// <returns></returns>
-        private static int GetSum(string numbers)
+        public static int GetSum(string numbers)
         {
-            string[] strSeperator = { ",", "\n" };
+            string[] strSeperator = { ",", "\n",";" };
             int result = 0;
             if (!string.IsNullOrEmpty(numbers))
             {
-                string strNumbers = numbers.Replace("\\n", ",");
+                string strNumbers = numbers.Replace("\\n", ",").Replace(";",",");
 
                 //Split the string and convert it to integer list
                 var lstNumbers = strNumbers.Split(strSeperator, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToList();
@@ -45,7 +46,7 @@ namespace AddCalculator
         /// Validates if any negative numbers present in the list
         /// </summary>
         /// <param name="numbersList">ex:1,-2,3</param>
-        private static void ValidateNumbers(List<int> numbersList)
+        public static void ValidateNumbers(List<int> numbersList)
         {
             if (numbersList.Any(x => x < 0))
             {
